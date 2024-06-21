@@ -2,7 +2,6 @@
   <div class="page container">
     <HomeComponent/>
     <RatesComponent/>
-    1
   </div>
 </template>
 
