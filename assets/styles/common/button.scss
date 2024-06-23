@@ -1,11 +1,8 @@
 .button {
-    background-color: #44d370;
+    background-color: #C071FF;
     color: #ffffff;
-    font-size: 16px;
-    border-radius: 10px;
-    width: 200px;
-    height: 60px;
-    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
     border: 0;
     cursor: pointer;
     @media (max-width: 1550px) {
@@ -13,4 +10,8 @@
       height: 50px;
       max-width: 160px;
     }
+}
+.btn {
+  border: 0;
+  border-radius: 5px;
 }
