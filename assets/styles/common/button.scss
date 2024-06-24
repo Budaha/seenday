@@ -4,14 +4,12 @@
     font-size: 14px;
     border-radius: 5px;
     border: 0;
+    width: 255px;
+    height: 55px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
     cursor: pointer;
     @media (max-width: 1550px) {
       font-size: 12px;
-      height: 50px;
-      max-width: 160px;
     }
-}
-.btn {
-  border: 0;
-  border-radius: 5px;
 }

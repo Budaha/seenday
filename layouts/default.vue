@@ -16,6 +16,7 @@ import { AppFooter, AppHeader } from '#components'
 <style lang="scss" scoped>
 .header {
   background-color: #ffffff;
-  padding-top: 20px;
+  padding-top: 19px;
+  padding-bottom: 19px;
 }
 </style>

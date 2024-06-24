@@ -1,36 +1,37 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+.container {
+  max-width: 1440px;
+  flex: 0 0 auto;
+  position: relative;
+  margin: 0 auto;
+  @media (max-width: 1800px) {
+    padding: 0 40px;
   }
-  .container {
-    max-width: 1440px;
-    flex: 0 0 auto;
-    position: relative;
-    margin: 0 auto;
-    @media (max-width: 1800px) {
-      padding: 0 40px;
-    }
-    @media (max-width: 768px) {
-      padding: 0 35px;
-    }
-    @media (max-width: 500px) {
-      padding: 0 20px;
-    }
+  @media (max-width: 768px) {
+    padding: 0 35px;
   }
-  ul,
-  li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  @media (max-width: 500px) {
+    padding: 0 20px;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin: 0;
-  }
+}
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
 
-  @import "./common.scss";
+@import "./common.scss";
