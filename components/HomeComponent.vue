@@ -131,6 +131,9 @@ const items = ref<arrAdvantages[]>([
     gap: 0 30px;
     margin-top: 161px;
     min-width: 850px;
+    @media(max-width: 1200px) {
+      min-width: 0;
+    }
   }
   &__grid-element {
     .title {
