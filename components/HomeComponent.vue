@@ -1,5 +1,29 @@
 <template>
   <div class="home-section">
+    <!-- burger menu -->
+    <img
+      src="../assets/image/header/Menu.svg"
+      class="menu-buttons"
+      @click="openMenu"
+    />
+    <!-- menu page -->
+    <div class="menu" v-if="isMenu">
+      <img
+        src="../assets/image/header/Close.svg"
+        class="menu-close"
+        @click="closeMenu"
+      />
+      <ul>
+        <li>Работа с Seenday</li>
+        <li>Автоматизация</li>
+        <li>Весь функционал</li>
+        <li>Тарифы</li>
+        <li>Контакты</li>
+      </ul>
+      <button class="button">Подключить</button>
+    </div>
+
+    <!-- home page -->
     <div class="home-section__block">
       <div class="home-section__block-text">
         <h1 class="home-section__title">
@@ -38,6 +62,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+const isMenu = ref(false);
+
+const openMenu = () => {
+  isMenu.value = true;
+};
+const closeMenu = () => {
+  if (!isMenu.value) return;
+  isMenu.value = false;
+};
 interface arrAdvantages {
   id: number;
   title: string;
@@ -70,6 +103,42 @@ const items = ref<arrAdvantages[]>([
 
   <style scoped lang="scss">
 .home-section {
+  .menu-buttons {
+    display: none;
+    width: 40px;
+    height: 40px;
+    @media (max-width: 1200px) {
+      display: flex;
+    }
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #282828;
+    .menu-close {
+      width: 40px;
+      height: 40px;
+    }
+    ul {
+      li {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29.26px;
+        color: #FFFFFF;
+        padding-top: 10px;
+      }
+    }
+    .button {
+      margin-top: 10px;
+      background: radial-gradient(
+          120.88% 337.27% at 13.44% -94.55%,
+          #ffa500 0%,
+          #a129ff 100%
+        );
+    }
+  }
   &__block {
     display: flex;
     @media (max-width: 1200px) {
