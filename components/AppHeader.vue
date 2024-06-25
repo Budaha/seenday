@@ -17,6 +17,24 @@
 </template>
   
 <script setup lang="ts">
+// document.addEventListener("keydown", (e) => {
+//   if (e.keyCode == 27) {
+//     isMenu.value = false;
+//   }
+// });
+// window.addEventListener("click", (e) => {
+//   const target = e.target;
+//   if (!target.closest(".menu") && !target.closest(".menubtn") && isMenu.value) {
+//     isMenu.value = false;
+//   }
+// });
+// window.addEventListener("scroll", () => {
+//   const scrollPosition = document.documentElement.scrollTop;
+//   if (scrollPosition >= 120 && isMenu.value) {
+//     isMenu.value = false;
+//     // console.log(scrollPosition);
+//   }
+// });
 </script>
 
 <style scoped lang="scss">

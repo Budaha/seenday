@@ -12,21 +12,76 @@
       </div>
     </div>
     <div class="rates-section__grid">
-      <div class="cards">
-        <h2 class="title">1 ТБ</h2>
+      <div
+        class="rates-section__grid-cards"
+        v-for="(card, index) in cards"
+        :key="index"
+        :class="{
+          'rates-section__grid-cards': true,
+          'rates-section__grid-cards--background': card.isBackground,
+        }"
+      >
+        <h2 class="title">{{ card?.quantity || "" }} ГБ</h2>
         <div class="info">
-          <img src="../assets/image/rates/RatesImg.png" />
-          <p>Загружайте любые фотографии: .JPG, .PNG, .WEBP и др.</p>
+          <img src="../assets/image/rates/RatesGrid.png" />
+          <p>{{ card?.advantageBuy || "" }}</p>
         </div>
-        <p></p>
+        <div class="info">
+          <img src="../assets/image/rates/RatesGrid2.png" />
+          <p>{{ card?.advantageAccounting || "" }}</p>
+        </div>
+        <button class="button" :class="index === 1 && 'button__main'">
+          Подключить за <span>{{ card?.price || 0 }} р / мес</span>
+        </button>
       </div>
-      <!-- <div class="cards"></div>
-      <div class="cards"></div> -->
     </div>
   </div>
 </template>
     
 <script setup lang="ts">
+import { ref } from "vue";
+
+interface arrCards {
+  id: number;
+  quantity: number;
+  price: number;
+  advantageBuy: string;
+  advantageAccounting: string;
+  isBackground: boolean;
+}
+
+const cards = ref<arrCards[]>([
+  {
+    id: 1,
+    quantity: 200,
+    price: 200,
+    advantageBuy:
+      "Покупаете и занимаетесь интеграцией онлайн кассы с Вашим эквайрингом;",
+    advantageAccounting:
+      "Ведем бухгалтерию за Вас и предоставляем Вам только акт о выплате средств;",
+    isBackground: false,
+  },
+  {
+    id: 2,
+    quantity: 200,
+    price: 200,
+    advantageBuy:
+      "Покупаете и занимаетесь интеграцией онлайн кассы с Вашим эквайрингом;",
+    advantageAccounting:
+      "Ведем бухгалтерию за Вас и предоставляем Вам только акт о выплате средств;",
+    isBackground: true,
+  },
+  {
+    id: 3,
+    quantity: 200,
+    price: 200,
+    advantageBuy:
+      "Покупаете и занимаетесь интеграцией онлайн кассы с Вашим эквайрингом;",
+    advantageAccounting:
+      "Ведем бухгалтерию за Вас и предоставляем Вам только акт о выплате средств;",
+    isBackground: false,
+  },
+]);
 </script>
 <style lang="scss" scoped>
 .rates-section {
@@ -36,9 +91,6 @@
     text-align: center;
     align-items: center;
     .title {
-      font-size: 45px;
-      font-weight: 700;
-      line-height: 54.86px;
       color: #ffffff;
     }
     .descr {
@@ -50,7 +102,12 @@
       max-width: 800px;
     }
     .buttons {
-      margin-top: 50px;
+      margin-top: 45px;
+      margin-left: 15px;
+      @media(max-width: 768px) {
+        margin-top: 0;
+        margin-left: 0;
+      }
       .button {
         width: 184px;
         border: 1px solid #ffa500;
@@ -75,24 +132,90 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    align-items: center;
+    max-width: 408px;
+    gap: 0 18px;
     margin-top: 25px;
-    .cards {
-      padding: 20px;
-      max-height: 300px;
-      max-width: 200px;
-      border: 2px solid #ffa500;
-      border-radius: 5px;
+    margin-left: 90px;
+    @media (max-width: 1440px) {
+      margin-left: 0;
     }
-    .title {
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 48.76px;
-      color: #FFFFFF;
-    }
-    .info {
+    @media (max-width: 1345px) {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: none;
+    }
+  }
+  &__grid-cards {
+    padding: 40px;
+    height: 314px;
+    width: 328px;
+    border-radius: 5px;
+    background: radial-gradient(
+      192.35% 126.8% at 34.18% 10.47%,
+      rgba(114, 48, 135, 0.55) 0%,
+      rgba(193, 95, 164, 0.55) 100%
+    );
+    @media (max-width: 1440px) {
+      margin-top: 20px;
+      width: 100%;
+      height: auto;
+      width: auto;
+    }
+    &--background {
+      background: radial-gradient(
+        156.07% 105.58% at 78.79% 105.58%,
+        rgba(118, 95, 182, 0.67) 0%,
+        rgba(165, 132, 225, 0.67) 99.04%
+      );
+      border: 2px solid #ffa500;
+    }
+  }
+  .title {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48.76px;
+    color: #ffffff;
+  }
+  .info {
+    display: flex;
+    margin-top: 18px;
+    img {
+      width: 18px;
+      height: 18px;
+    }
+    p {
+      padding-left: 13px;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 20.72px;
+      color: #ffffff;
+    }
+  }
+  .button {
+    width: 325px;
+    height: 69px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21.94px;
+    border: 2px solid #ffa500;
+    margin-top: 35px;
+    background: radial-gradient(
+      192.35% 126.8% at 34.18% 10.47%,
+      rgba(114, 48, 135, 0.55) 0%,
+      rgba(193, 95, 164, 0.55) 100%
+    );
+    span {
+      font-weight: 700;
+    }
+    &__main {
+      background: radial-gradient(
+        127.63% 987.11% at 13.33% 0%,
+        #a328ff 0%,
+        #ffa401 100%
+      );
+      border: none;
     }
   }
 }

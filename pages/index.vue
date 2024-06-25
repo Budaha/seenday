@@ -16,6 +16,12 @@ import { HomeComponent, RatesComponent } from "#components";
   background: url(../assets/image/home/HomeSection.svg);
   padding-top: 100px;
   padding-bottom: 174px;
+  @media (max-width: 1200px) {
+    padding-bottom: 40px;
+  }
+  @media (max-width: 768px) {
+    padding-top: 37px;
+  }
 }
 .rates {
   background: url(../assets/image/rates/Rates.png);

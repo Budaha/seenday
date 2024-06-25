@@ -5,6 +5,7 @@
         <h1 class="home-section__title">
           Сервис для продажи фотографий онлайн и работы с клиентами
         </h1>
+        <img class="home-image" src="../assets/image/home/HomeImage.png" />
         <div class="home-section__descr">
           <p>
             <span>Seenday</span> – это готовое решение для автоматической
@@ -14,8 +15,10 @@
         </div>
         <div class="home-section__buttons">
           <button class="button">Подключить</button>
-          <img src="../assets/image/home/Question.png" />
-          <p>Задать вопрос</p>
+          <div class="question">
+            <img src="../assets/image/home/Question.png" />
+            <p>Задать вопрос</p>
+          </div>
         </div>
         <div class="home-section__grid">
           <div
@@ -28,7 +31,6 @@
           </div>
         </div>
       </div>
-      <img class="home-image" src="../assets/image/home/HomeImage.png" />
     </div>
   </div>
 </template>
@@ -70,14 +72,17 @@ const items = ref<arrAdvantages[]>([
 .home-section {
   &__block {
     display: flex;
+    @media (max-width: 1200px) {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
   }
   &__block-text {
     display: flex;
     flex-direction: column;
     padding-left: 6px;
     max-width: 638px;
-    position: relative;
-    z-index: 2;
   }
   &__title {
     text-transform: uppercase;
@@ -85,9 +90,15 @@ const items = ref<arrAdvantages[]>([
     font-size: 45px;
     line-height: 54.86px;
     color: #282828;
+    z-index: 2;
+    @media (max-width: 768px) {
+      font-size: 36px;
+      line-height: 43.88px;
+    }
   }
   &__descr {
     padding-top: 8px;
+    z-index: 2;
     p {
       font-weight: 500;
       font-size: 22px;
@@ -104,6 +115,9 @@ const items = ref<arrAdvantages[]>([
     display: flex;
     align-items: center;
     margin-top: 49px;
+    @media (max-width: 1200px) {
+      flex-direction: column;
+    }
     .button {
       box-shadow: 11px 16px 30px 0px #7175d833;
       background: radial-gradient(
@@ -112,8 +126,15 @@ const items = ref<arrAdvantages[]>([
         #a129ff 100%
       );
     }
-    img {
+    .question {
+      display: flex;
       margin-left: 46px;
+      @media (max-width: 1200px) {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+    }
+    img {
       width: 17px;
       height: 16px;
     }
@@ -131,11 +152,19 @@ const items = ref<arrAdvantages[]>([
     gap: 0 30px;
     margin-top: 161px;
     min-width: 850px;
-    @media(max-width: 1200px) {
+    z-index: 2;
+    @media (max-width: 1200px) {
       min-width: 0;
+      margin-top: 70px;
+    }
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   &__grid-element {
+    @media (max-width: 768px) {
+      padding-top: 15px;
+    }
     .title {
       font-size: 27px;
       font-weight: 700;
@@ -154,6 +183,12 @@ const items = ref<arrAdvantages[]>([
     right: -203px;
     top: -52px;
     z-index: 1;
+    @media (max-width: 1200px) {
+      width: 100%;
+      position: relative;
+      right: 0;
+      top: 0;
+    }
   }
 }
 </style>
