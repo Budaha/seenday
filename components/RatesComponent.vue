@@ -7,8 +7,8 @@
         их в любое время на любом устройстве.
       </p>
       <div class="buttons">
-        <button class="button">На месяц</button>
-        <button class="button">На год <span>Выгодно</span></button>
+        <button @click="editRatesType('month')" class="button" :class="ratesType === 'month' && 'button--active'">На месяц</button>
+        <button @click="editRatesType('year')" class="button" :class="ratesType !== 'month' && 'button--active'">На год <span>Выгодно</span></button>
       </div>
     </div>
     <div class="rates-section__grid">
@@ -82,6 +82,11 @@ const cards = ref<arrCards[]>([
     isBackground: false,
   },
 ]);
+const ratesType = ref<string>('month')
+
+const editRatesType = (type: string) => {
+  ratesType.value = type
+}
 </script>
 <style lang="scss" scoped>
 .rates-section {
@@ -102,30 +107,51 @@ const cards = ref<arrCards[]>([
       max-width: 800px;
     }
     .buttons {
+      display: flex;
       margin-top: 45px;
       margin-left: 15px;
+      border: 2px solid #ffa500;;
+      border-radius: 10px;
       @media(max-width: 768px) {
         margin-top: 0;
         margin-left: 0;
       }
       .button {
+        margin: 0;
+        border: none;
+        border-radius: 0;
         width: 184px;
-        border: 1px solid #ffa500;
         font-size: 20px;
         font-weight: 500;
         line-height: 24.38px;
+        transition: 0.2s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: 52px;
         span {
           font-size: 13px;
           font-weight: 700;
           line-height: 15.85px;
           color: #ffa500;
+          margin-left: 10px;
+          margin-top: 3px;
         }
-        :hover {
-          color: #ffffff;
+        &--active {
+          transition: 0.2s;
+          background: #ffa500;
+          span {
+            color: #ffffff;
+          }
         }
-      }
-      :hover {
-        background: #ffa500;
+        &:first-child {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+        }
+        &:last-child {
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
       }
     }
   }

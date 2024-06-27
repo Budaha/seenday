@@ -1,19 +1,16 @@
 <template>
   <div class="home-section">
     <!-- burger menu -->
-    <img
-      src="../assets/image/header/Menu.svg"
-      class="menu-buttons"
-      @click="openMenu"
-    />
+    <div class="menu-buttons">
+      <img src="../assets/image/header/Menu.svg" @click="openMenu" />
+    </div>
+
     <!-- menu page -->
     <div class="menu" v-if="isMenu">
-      <img
-        src="../assets/image/header/Close.svg"
-        class="menu-close"
-        @click="closeMenu"
-      />
-      <ul>
+      <div class="menu-close">
+        <img src="../assets/image/header/Close.svg" @click="closeMenu" />
+      </div>
+      <ul class="list">
         <li>Работа с Seenday</li>
         <li>Автоматизация</li>
         <li>Весь функционал</li>
@@ -26,7 +23,7 @@
     <!-- home page -->
     <div class="home-section__block">
       <div class="home-section__block-text">
-        <h1 class="home-section__title">
+        <h1 class="title">
           Сервис для продажи фотографий онлайн и работы с клиентами
         </h1>
         <img class="home-image" src="../assets/image/home/HomeImage.png" />
@@ -62,20 +59,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const isMenu = ref(false);
-
-const openMenu = () => {
-  isMenu.value = true;
-};
-const closeMenu = () => {
-  if (!isMenu.value) return;
-  isMenu.value = false;
-};
 interface arrAdvantages {
   id: number;
   title: string;
   description: string;
 }
+
+const isMenu = ref<boolean>(false);
 
 const items = ref<arrAdvantages[]>([
   {
@@ -99,44 +89,89 @@ const items = ref<arrAdvantages[]>([
     description: "средний чек в 2020 году с продажи фотографий",
   },
 ]);
+
+const openMenu = () => {
+  isMenu.value = true;
+};
+const closeMenu = () => {
+  if (!isMenu.value) return;
+  isMenu.value = false;
+};
+
+const handleKeydown = (e: KeyboardEvent) => {
+  if (e.key === "Escape" || e.keyCode === 27) {
+    isMenu.value = false;
+  }
+};
+onMounted(() => {
+  document.addEventListener("keydown", handleKeydown);
+});
+onBeforeUnmount(() => {
+  document.removeEventListener("keydown", handleKeydown);
+});
 </script>
 
-  <style scoped lang="scss">
+<style scoped lang="scss">
 .home-section {
+  display: flex;
+  flex-direction: column;
   .menu-buttons {
     display: none;
-    width: 40px;
-    height: 40px;
     @media (max-width: 1200px) {
       display: flex;
+      justify-content: right;
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
     }
   }
   .menu {
     display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    text-align: center;
     background: #282828;
     .menu-close {
-      width: 40px;
-      height: 40px;
+      padding-top: 30px;
+      position: absolute;
+      right: 35px;
+      img {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
     }
-    ul {
+    .list {
+      margin-top: 100px;
       li {
         font-size: 24px;
         font-weight: 500;
         line-height: 29.26px;
-        color: #FFFFFF;
-        padding-top: 10px;
+        color: #ffffff;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+        transition: 0.2s;
+        color: #a129ff;
+      }
       }
     }
     .button {
-      margin-top: 10px;
+      margin-top: 50px;
       background: radial-gradient(
-          120.88% 337.27% at 13.44% -94.55%,
-          #ffa500 0%,
-          #a129ff 100%
-        );
+        120.88% 337.27% at 13.44% -94.55%,
+        #ffa500 0%,
+        #a129ff 100%
+      );
     }
   }
   &__block {
@@ -152,18 +187,6 @@ const items = ref<arrAdvantages[]>([
     flex-direction: column;
     padding-left: 6px;
     max-width: 638px;
-  }
-  &__title {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 45px;
-    line-height: 54.86px;
-    color: #282828;
-    z-index: 2;
-    @media (max-width: 768px) {
-      font-size: 36px;
-      line-height: 43.88px;
-    }
   }
   &__descr {
     padding-top: 8px;
@@ -252,6 +275,10 @@ const items = ref<arrAdvantages[]>([
     right: -203px;
     top: -52px;
     z-index: 1;
+    @media (max-width: 1440px) {
+      top: -30px;
+      width: 70%;
+    }
     @media (max-width: 1200px) {
       width: 100%;
       position: relative;
