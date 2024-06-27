@@ -160,9 +160,9 @@ onBeforeUnmount(() => {
         cursor: pointer;
         transition: 0.2s;
         &:hover {
-        transition: 0.2s;
-        color: #a129ff;
-      }
+          transition: 0.2s;
+          color: #a129ff;
+        }
       }
     }
     .button {

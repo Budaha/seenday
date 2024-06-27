@@ -7,8 +7,20 @@
         их в любое время на любом устройстве.
       </p>
       <div class="buttons">
-        <button @click="editRatesType('month')" class="button" :class="ratesType === 'month' && 'button--active'">На месяц</button>
-        <button @click="editRatesType('year')" class="button" :class="ratesType !== 'month' && 'button--active'">На год <span>Выгодно</span></button>
+        <button
+          @click="editRatesType('month')"
+          class="button"
+          :class="ratesType === 'month' && 'button--active'"
+        >
+          На месяц
+        </button>
+        <button
+          @click="editRatesType('year')"
+          class="button"
+          :class="ratesType !== 'month' && 'button--active'"
+        >
+          На год <span>Выгодно</span>
+        </button>
       </div>
     </div>
     <div class="rates-section__grid">
@@ -82,11 +94,11 @@ const cards = ref<arrCards[]>([
     isBackground: false,
   },
 ]);
-const ratesType = ref<string>('month')
+const ratesType = ref<string>("month");
 
 const editRatesType = (type: string) => {
-  ratesType.value = type
-}
+  ratesType.value = type;
+};
 </script>
 <style lang="scss" scoped>
 .rates-section {
@@ -110,9 +122,9 @@ const editRatesType = (type: string) => {
       display: flex;
       margin-top: 45px;
       margin-left: 15px;
-      border: 2px solid #ffa500;;
+      border: 2px solid #ffa500;
       border-radius: 10px;
-      @media(max-width: 768px) {
+      @media (max-width: 768px) {
         margin-top: 0;
         margin-left: 0;
       }
