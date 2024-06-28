@@ -23,6 +23,6 @@ import { AppFooter, AppHeader } from "#components";
 }
 .footer {
   background-color: #282828;
-  padding-top: 35px;
+  padding-top: 40px;
 }
 </style>
