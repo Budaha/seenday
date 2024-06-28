@@ -260,6 +260,7 @@ const links = ref<arrLinks[]>([
     }
     @media(max-width:865px) {
       flex-direction: row;
+      justify-content: space-between;
       margin-top: 20px;
     }
     &-second {
